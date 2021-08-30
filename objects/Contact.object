@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>Age__c</fullName>
+        <externalId>false</externalId>
+        <formula>( TODAY() -Birthdate)/365</formula>
+        <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+        <label>Age</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Experience__c</fullName>
+        <description>Experience in years</description>
+        <externalId>false</externalId>
+        <label>Experience</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>ID__c</fullName>
+        <displayFormat>P-{00000000}</displayFormat>
+        <externalId>false</externalId>
+        <label>ID</label>
+        <type>AutoNumber</type>
+    </fields>
+    <fields>
+        <fullName>Language__c</fullName>
+        <externalId>false</externalId>
+        <label>Language</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>English</fullName>
+                    <default>false</default>
+                    <label>English</label>
+                </value>
+                <value>
+                    <fullName>Hindi</fullName>
+                    <default>false</default>
+                    <label>Hindi</label>
+                </value>
+                <value>
+                    <fullName>Telugu</fullName>
+                    <default>false</default>
+                    <label>Telugu</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+    <fields>
+        <fullName>Qualitification__c</fullName>
+        <description>Stores the qualifications</description>
+        <externalId>false</externalId>
+        <label>Qualitification</label>
+        <required>false</required>
+        <trackFeedHistory>false</trackFeedHistory>
+        <type>MultiselectPicklist</type>
+        <valueSet>
+            <restricted>true</restricted>
+            <valueSetDefinition>
+                <sorted>false</sorted>
+                <value>
+                    <fullName>MBBS</fullName>
+                    <default>false</default>
+                    <label>MBBS</label>
+                </value>
+                <value>
+                    <fullName>Diploma in Child Health (DCH)</fullName>
+                    <default>false</default>
+                    <label>Diploma in Child Health (DCH)</label>
+                </value>
+                <value>
+                    <fullName>MD - Pediatrics</fullName>
+                    <default>false</default>
+                    <label>MD - Pediatrics</label>
+                </value>
+                <value>
+                    <fullName>DNB - Pediatrics</fullName>
+                    <default>false</default>
+                    <label>DNB - Pediatrics</label>
+                </value>
+                <value>
+                    <fullName>DM - Cardiology</fullName>
+                    <default>false</default>
+                    <label>DM - Cardiology</label>
+                </value>
+                <value>
+                    <fullName>MD - General Medicine</fullName>
+                    <default>false</default>
+                    <label>MD - General Medicine</label>
+                </value>
+                <value>
+                    <fullName>DNB - Cardiothoracic Surgery</fullName>
+                    <default>false</default>
+                    <label>DNB - Cardiothoracic Surgery</label>
+                </value>
+                <value>
+                    <fullName>FRCS - Cardiothoracic Surgery</fullName>
+                    <default>false</default>
+                    <label>FRCS - Cardiothoracic Surgery</label>
+                </value>
+            </valueSetDefinition>
+        </valueSet>
+        <visibleLines>4</visibleLines>
+    </fields>
+</CustomObject>

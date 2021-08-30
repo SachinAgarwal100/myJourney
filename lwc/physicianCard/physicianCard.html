@@ -1,0 +1,41 @@
+<template>
+    <lightning-card>
+        <div style="text-align:center">
+            <table>
+                <tr>
+                    <td>
+                        <div class="circular--portrait">
+                            <img src={physician.imgUrl} />
+                        </div>
+                    </td>
+                    <td>
+                        <div class="slds-text-heading_large">{physician.name}</div>
+                        <br />
+                        <table>
+                            <tr>
+                                <td class="slds-text-title_bold">Qualification</td>
+                                <td>{physician.qual}</td>
+                            </tr>
+                            <tr>
+                                <td class="slds-text-title_bold">Department</td>
+                                <td>{physician.dept}</td>
+                            </tr>
+                            <tr>
+                                <td class="slds-text-title_bold">Experience:</td>
+                                <td>{physician.exp}</td>
+                            </tr>
+                            <tr>
+                                <td class="slds-text-title_bold">Language</td>
+                                <td>{physician.lang}</td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <br />
+        <c-physician-calendar lst-days={physician.lstDays} phy-id={physician.phySpecId} phy-name={physician.name}
+            onbookslot={bookSlot}>
+        </c-physician-calendar>
+    </lightning-card>
+</template>

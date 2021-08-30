@@ -1,0 +1,5 @@
+Hi {!Appointment__c.Patient__c},
+
+Your appointment has been booked successfully with {!Appointment__c.Physician_s_Name__c} between {!Appointment__c.Start_Time__c} and {!Appointment__c.End_Time__c}.
+
+Thanks!

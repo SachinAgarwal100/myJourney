@@ -1,0 +1,23 @@
+<template>
+    <lightning-tabset>
+        <template for:each={lstDays} for:item="day">
+            <div key={day.dt}>
+                <lightning-tab label={day.dt}>
+                    <div class="slds-grid slds-wrap">
+                        <template for:each={day.slots} for:item="slot">
+                            <div key={slot.key}>
+                                <template if:true={slot.isAvail}>
+                                    <lightning-button data-phy-id={phyId} data-phy-name={phyName} data-dt={day.dt}
+                                        data-slot-start={slot.startT} data-slot-end={slot.endT}
+                                        data-slot-name={slot.name} label={slot.name} onclick={handleClick}
+                                        class="slds-m-left_x-small">
+                                    </lightning-button>
+                                </template>
+                            </div>
+                        </template>
+                    </div>
+                </lightning-tab>
+            </div>
+        </template>
+    </lightning-tabset>
+</template>

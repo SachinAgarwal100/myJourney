@@ -1,0 +1,20 @@
+<template>
+    <template if:true={showSpinner}>
+        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+    </template>
+
+    <lightning-combobox name="specialization" label="" value={spec} placeholder="Select Specialization"
+        options={specoptions} onchange={handleSpecChange}></lightning-combobox>
+
+    <br />
+    <template for:each={lstPhysicians} for:item="singlePhysician">
+        <div key={singlePhysician.phyId}>
+            <c-physician-card physician={singlePhysician} onbookslot={bookSlot}>
+            </c-physician-card>
+        </div>
+    </template>
+    <template if:true={showBookingSlotModal}>
+        <c-book-slot onclosemodal={closeModal} onrefreshcalendar={refreshCalendar} phy-id={phyId} phy-name={phyName}
+            slot-start={slotStart} slot-name={slotName} slot-end={slotEnd} book-date={bookDate}></c-book-slot>
+    </template>
+</template>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EmailTemplate xmlns="http://soap.sforce.com/2006/04/metadata">
+    <available>true</available>
+    <description>Email Template that will be sent out to the patient when his appointment is booked with a physician</description>
+    <encodingKey>UTF-8</encodingKey>
+    <name>Patient Appointment Notification Email Template</name>
+    <style>none</style>
+    <subject>Appointment with {!Appointment__c.Physician_s_Name__c} Booked</subject>
+    <type>text</type>
+    <uiType>Aloha</uiType>
+</EmailTemplate>
