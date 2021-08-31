@@ -69,14 +69,27 @@ public with sharing class PatientController {
     public static String registerPatient(String firstName, String lastName, Date dob, String mob, String emailId, String recordTypeId){
         try {
             Account acc = new Account();
-            acc.firstName = firstName;
-            acc.lastName = lastName;
-            acc.PersonBirthDate = dob;
-            acc.PersonMobilePhone = mob;
-            acc.recordTypeId = recordTypeId;
-            acc.PersonEmail = emailId;
-
-            insert acc;
+            if (Schema.sObjectType.Account.fields.firstName.isCreateable()) {
+                acc.firstName = firstName;
+            }
+            if (Schema.sObjectType.Account.fields.lastName.isCreateable()) {
+                acc.lastName = lastName;
+            }
+            if (Schema.sObjectType.Account.fields.PersonBirthDate.isCreateable()) {
+                acc.PersonBirthDate = dob;
+            }
+            if (Schema.sObjectType.Account.fields.PersonMobilePhone.isCreateable()) {
+                acc.PersonMobilePhone = mob;
+            }
+            if (Schema.sObjectType.Account.fields.recordTypeId.isCreateable()) {
+                acc.recordTypeId = recordTypeId;
+            }
+            if (Schema.sObjectType.Account.fields.PersonEmail.isCreateable()) {
+                acc.PersonEmail = emailId;
+            }
+            if (Schema.sObjectType.Account.isCreateable()) {
+                insert acc;
+            }
 
             return acc.id;
             
@@ -95,9 +108,16 @@ public with sharing class PatientController {
         try{
             if(String.isNotBlank(emailId) && String.isNotBlank(appointmentId)){
                 con = new Contact();
-                con.lastname = 'Dummy';
-                con.Email = emailId;
-                insert con;
+
+                if (Schema.sObjectType.Contact.fields.lastname.isCreateable()) {
+                    con.lastname = 'Dummy';
+                }
+                if (Schema.sObjectType.Contact.fields.Email.isCreateable()) {
+                    con.Email = emailId;
+                }
+                if (Schema.sObjectType.Contact.isCreateable()) {
+                    insert con;
+                }
 
                 Messaging.SingleEmailMessage message = new Messaging.SingleEmailMessage();
                 message.setTargetObjectId(con.id); 
