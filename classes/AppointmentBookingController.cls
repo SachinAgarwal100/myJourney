@@ -278,15 +278,19 @@ public with sharing class AppointmentBookingController {
             if(lstPhySpec != null && !lstPhySpec.isEmpty() && String.isNotBlank(lstPhySpec[0].Physician__r.Email)){
                 list<Account> lstPatient = [SELECT Id, Id__pc, Name, PersonEmail
                                             FROM Account
-                                            WHERE ID = :patientId AND IsPersonAccount = true];
+                                            WHERE ID = :patientId AND IsPersonAccount = true WITH SECURITY_ENFORCED];
                 
                 if(lstPatient != null && !lstPatient.isEmpty()){
                     Boolean status = GoogleService.bookAppointment(lstPatient[0].Name, lstPatient[0].Id__pc, lstPhySpec[0].Physician__r.Email, newApt.Start_Time__c, newApt.End_Time__c);
 
                     if(status){
-                        insert newApt;
+                        if (Schema.sObjectType.Appointment__c.isCreateable()) {
+                            insert newApt;
+                            PatientController.notifyPatient(lstPatient[0].PersonEmail, newApt.id);
+                        }
+                        //insert newApt;
 
-                        PatientController.notifyPatient(lstPatient[0].PersonEmail, newApt.id);
+                        //PatientController.notifyPatient(lstPatient[0].PersonEmail, newApt.id);
                     }
                 }          
             }
@@ -306,19 +310,28 @@ public with sharing class AppointmentBookingController {
         Appointment__c newApt = new Appointment__c();
         try{
             if(String.isNotBlank(patientId) && bookDate != null && slotStart != null && slotEnd != null && String.isNotBlank(phyId)){
-                newApt.Patient__c = patientId;
-                newApt.Physician__c = phyId;
 
                 integer hours = slotStart/3600000;
                 integer minutes = (slotStart - (3600000 * hours))/60000;
-
-                newApt.Start_Time__c = Datetime.newInstance(bookDate, Time.newInstance(hours, minutes, 0, 0));
-
+                
+                if (Schema.sObjectType.Appointment__c.fields.Patient__c.isCreateable()) {
+                    newApt.Patient__c = patientId;
+                }
+                if (Schema.sObjectType.Appointment__c.fields.Physician__c.isCreateable()) {
+                    newApt.Physician__c = phyId;
+                }
+                if (Schema.sObjectType.Appointment__c.fields.Start_Time__c.isCreateable()) {
+                    newApt.Start_Time__c = Datetime.newInstance(bookDate, Time.newInstance(hours, minutes, 0, 0));
+                }
                 hours = slotEnd/3600000;
                 minutes = (slotEnd - (3600000 * hours))/60000;
-
-                newApt.End_Time__c = Datetime.newInstance(bookDate, Time.newInstance(hours, minutes, 0, 0));
-                newApt.Status__c = 'Scheduled';
+                
+                if (Schema.sObjectType.Appointment__c.fields.End_Time__c.isCreateable()) {
+                    newApt.End_Time__c = Datetime.newInstance(bookDate, Time.newInstance(hours, minutes, 0, 0));
+                }
+                if (Schema.sObjectType.Appointment__c.fields.Status__c.isCreateable()) {
+                    newApt.Status__c = 'Scheduled';
+                }
             }
         }
         catch(Exception ex){
