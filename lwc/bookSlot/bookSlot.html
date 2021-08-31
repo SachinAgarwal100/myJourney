@@ -20,12 +20,14 @@
                 <div class="slds-grid">
                     <div class="slds-col">
                         <div class="searchBox">
+                            <b>Slot</b> : {bookDate} {slotName}
                             <lightning-input type="email" label="" placeholder="Enter patient's email id" value={pEmail}
                                 onchange={emailChanged}>
                             </lightning-input>
                         </div>
                     </div>
-                    <div class="slds-col">&nbsp;<br />
+                    <div class="slds-col"><b>Physician</b> : {phyName}<br />
+                        <br />
                         <lightning-button-icon icon-name="utility:search" variant="bare" alternative-text="Search"
                             title="Search" onclick={searchPatient} class="slds-m-left_xx-small" size="large">
                         </lightning-button-icon>
@@ -55,23 +57,18 @@
                             <lightning-input type="text" label="Last Name" required value={patLastName}
                                 onchange={patLastNameChanged}>
                             </lightning-input>
-                            <lightning-input type="date" name="bdate" label="Birthdate" required value={patBdate}
-                                onchange={patBdateChanged}>
+                            <lightning-input type="date" name="bdate" label="Birthdate" required max={todayDt}
+                                value={patBdate} onchange={patBdateChanged}>
                             </lightning-input>
                             <lightning-input type="tel" label="Mobile" value={patPhone} required
                                 onchange={patPhoneChanged}>
                             </lightning-input>
-                            <lightning-input type="email" required label="Email Id" value={patEmail}
-                                onchange={patEmailChanged}>
+                            <lightning-input type="email" disabled required label="Email Id" value={patEmail}>
                             </lightning-input>
                         </div>
                     </template>
                 </div>
-
-
                 <br />
-
-
             </div>
             <!-- Modal/Popup Box LWC footer starts here -->
             <footer class="slds-modal__footer">
