@@ -18,6 +18,7 @@ export default class BookSlot extends LightningElement {
     patEmail;
     patBdate;
     displaySpinner = false;
+    todayDt = new Date().toISOString();
 
     @api phyId;
     @api phyName;
@@ -29,7 +30,7 @@ export default class BookSlot extends LightningElement {
     columns = [
         { label: 'Patient ID', fieldName: 'patId', type: 'text' },
         { label: 'Name', fieldName: 'name', type: 'text' },
-        { label: 'Age', fieldName: 'age', type: 'number' },
+        { label: 'Age', fieldName: 'age', type: 'text' },
         { label: 'Mobile', fieldName: 'phone', type: 'phone' }
     ];
 
@@ -69,11 +70,6 @@ export default class BookSlot extends LightningElement {
         this.patBdate = event.target.value;
     }
 
-    // Method called when patient's email is changed
-    patEmailChanged(event) {
-        this.patEmail = event.target.value;
-    }
-
     // Method called when search text is changed
     emailChanged(event) {
         this.pEmail = event.target.value;
@@ -93,6 +89,7 @@ export default class BookSlot extends LightningElement {
                 this.lstPatients = result;
                 if (result == undefined || result == null) {
                     this.showPatientForm = true;
+                    this.patEmail = this.pEmail;
                 }
                 else {
                     this.showPatientForm = false;
